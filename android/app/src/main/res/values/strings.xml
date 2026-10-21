@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Vestibular Questões</string>
+    <string name="nav_questions">Questões</string>
+    <string name="nav_history">Histórico</string>
+    <string name="nav_profile">Perfil</string>
+    <string name="all_subjects">Todas as Matérias</string>
+    <string name="all_years">Todos os Anos</string>
+    <string name="all_vestibulares">Todos os Vestibulares</string>
+</resources>

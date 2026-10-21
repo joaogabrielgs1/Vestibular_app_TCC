@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Barra Superior: Título e Progresso -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvExamTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Simulado"
+                android:textColor="@color/primary_dark"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvExamProgressCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Questão 1 de 10"
+                android:textColor="@color/accent"
+                android:textStyle="bold"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <!-- Indicador Visual de Progresso -->
+        <ProgressBar
+            android:id="@+id/pbExamProgress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_marginTop="10dp"
+            android:progressDrawable="@drawable/progress_bar_custom"
+            android:max="10"
+            android:progress="1" />
+
+        <!-- Badge da Matéria / Vestibular -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvExamQuestionBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/primary_light"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"
+                android:text="ENEM 2023"
+                android:textColor="@color/primary_dark"
+                android:textStyle="bold"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tvExamSubjectBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@color/divider"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"
+                android:text="Matemática"
+                android:textColor="@color/text_primary"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Enunciado -->
+        <TextView
+            android:id="@+id/tvExamStatement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:lineSpacingMultiplier="1.2"
+            android:text="Enunciado da questão..."
+            android:textColor="@color/text_primary"
+            android:textSize="16sp" />
+
+        <!-- Imagem da Questão no Simulado -->
+        <ImageView
+            android:id="@+id/ivExamQuestionImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:adjustViewBounds="true"
+            android:maxHeight="320dp"
+            android:scaleType="fitCenter"
+            android:visibility="gone" />
+
+        <!-- Alternativas -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Alternativas:"
+            android:textColor="@color/text_secondary"
+            android:textStyle="bold"
+            android:textSize="14sp" />
+
+        <RadioGroup
+            android:id="@+id/rgExamAlternatives"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
+        <ProgressBar
+            android:id="@+id/pbSavingAnswer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"
+            android:layout_marginTop="12dp" />
+
+        <!-- Botões de Navegação Anterior / Próxima -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnExamPrevious"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" android:minHeight="52dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="◀ Anterior"
+                android:textColor="@color/primary" />
+
+            <Button
+                android:id="@+id/btnExamNext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" android:minHeight="52dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/primary"
+                android:text="Próxima ▶" />
+        </LinearLayout>
+
+        <!-- Botão Finalizar Simulado -->
+        <Button
+            android:id="@+id/btnExamFinish"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:minHeight="52dp"
+            android:layout_marginTop="16dp"
+            android:text="Finalizar e Entregar Simulado"
+            android:textColor="@color/error"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</ScrollView>

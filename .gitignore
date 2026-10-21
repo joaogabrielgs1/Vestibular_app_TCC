@@ -1,0 +1,98 @@
+# =============================================================================
+# Vestibular App TCC — .gitignore
+# =============================================================================
+
+# ---------------------------------------------------------------------------
+# Variáveis de ambiente e credenciais (NUNCA versionar)
+# ---------------------------------------------------------------------------
+.env
+.env.local
+.env.*.local
+*.env
+
+# ---------------------------------------------------------------------------
+# Node.js — Backend
+# ---------------------------------------------------------------------------
+backend/node_modules/
+backend/coverage/
+backend/benchmarks/results_*.json
+backend/benchmarks/results_*.txt
+backend/uploads/
+backend/logs/
+backend/*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ---------------------------------------------------------------------------
+# Android — Front-end
+# ---------------------------------------------------------------------------
+android/.gradle/
+android/app/build/
+android/build/
+android/local.properties
+android/.idea/
+android/captures/
+android/*.iml
+android/**/*.iml
+android/app/google-services.json
+*.apk
+*.aab
+*.dex
+*.ap_
+*.class
+
+# ---------------------------------------------------------------------------
+# Sistemas Operacionais
+# ---------------------------------------------------------------------------
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+*~
+
+# ---------------------------------------------------------------------------
+# IDEs e Editores
+# ---------------------------------------------------------------------------
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+*.suo
+*.user
+.vs/
+
+# ---------------------------------------------------------------------------
+# Arquivos temporários e de diagnóstico
+# ---------------------------------------------------------------------------
+*.tmp
+*.temp
+*.log
+fix_db.js
+fix_db2.js
+test-db.js
+
+# ---------------------------------------------------------------------------
+# Arquivos do TCC (monografia, revisões e bibliografia — não versionados)
+# ---------------------------------------------------------------------------
+TCC_Monografia_Revisada.md
+Correcoes_do_TCC.md
+refs.bib
+*.bib
+
+# ---------------------------------------------------------------------------
+# Artefatos de build e compilação
+# ---------------------------------------------------------------------------
+dist/
+out/
+*.zip
+*.tar.gz
