@@ -348,9 +348,3 @@ O banco de dados precisa estar ativo e acessível antes de executar `npm test`.
 ## Contribuições
 
 Este repositório corresponde ao projeto de TCC. Não há política de contribuição externa ativa.
-
----
-
-## Autor
-
-João Gabriel — Engenharia de Software, TCC 2026
