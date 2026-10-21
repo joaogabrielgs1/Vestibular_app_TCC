@@ -1,6 +1,6 @@
 # Vestibular App — TCC
 
-Aplicativo mobile de preparação para vestibulares desenvolvido como Trabalho de Conclusão de Curso (TCC) em Engenharia de Software.
+Aplicativo mobile de preparação para vestibulares desenvolvido como Trabalho de Conclusão de Curso (TCC) em Ciencia da Computação.
 
 O projeto implementa e compara empiricamente duas arquiteturas de back-end — **MVC customizado (Node.js + MySQL)** e **BaaS (Firebase/Firestore)** — avaliando desempenho, manutenibilidade e adequação funcional segundo a norma **ISO/IEC 25010:2011**.
 
