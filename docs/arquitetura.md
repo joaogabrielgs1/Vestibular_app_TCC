@@ -98,6 +98,50 @@ backend/
 
 ---
 
+## Back-end BaaS (Firebase Cloud Functions + Cloud Firestore)
+
+### Camadas
+
+```
+firebase/
+├── firebase.json              # Configurações do runtime e emuladores locais
+├── firestore.rules            # Regras de segurança declarativas
+├── firestore.indexes.json     # Índices compostos para ordenação e filtros
+├── scripts/
+│   └── seedFirestore.js       # Povoamento determinístico idêntico ao seed MySQL
+└── functions/
+    ├── package.json           # Dependências (Express, firebase-admin, etc.)
+    └── src/
+        ├── index.js           # Ponto de entrada: exports.api = functions.https.onRequest(app)
+        ├── middlewares/
+        │   └── authMiddleware.js # Validação de JWT Bearer
+        ├── controllers/       # Lógica de negócio sobre o Firestore
+        │   ├── authController.js
+        │   ├── questionController.js
+        │   ├── answerController.js
+        │   ├── simulationController.js
+        │   └── filterController.js
+        └── routes/            # Rotas /api/* idênticas às do MVC
+            ├── authRoutes.js
+            ├── questionRoutes.js
+            ├── answerRoutes.js
+            ├── simulationRoutes.js
+            └── filterRoutes.js
+```
+
+### Modelo de Dados no Firestore (NoSQL orientado a documentos)
+
+| Coleção | Estrutura Principal | Estratégia de Modelagem |
+|---|---|---|
+| `users` | Documento por usuário contendo credenciais (hash), perfil e status | Chave = UID do usuário |
+| `subjects` | Documentos simples `{ id, name }` | Leitura pública rápida |
+| `vestibulares` | Documentos simples `{ id, name, acronym }` | Leitura pública rápida |
+| `questions` | Documentos completos contendo enunciado, alternativas em array e dados de matéria/banca | **Desnormalização:** armazena `subjectName` e `vestibularName` no próprio documento para eliminar necessidade de JOINs |
+| `answers` | Registro de submissões de resposta com `userId`, `questionId`, `alternativeId`, `isCorrect` e timestamp | Indexado por `userId` e `answeredAt` para histórico e agregação estatística |
+| `simulations` | Documentos com questões incorporadas em array, respostas marcadas e pontuação final | Agrupamento em documento autocontido |
+
+---
+
 ## Front-end Android (Kotlin)
 
 ### Camadas de código

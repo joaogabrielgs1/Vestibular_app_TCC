@@ -64,13 +64,14 @@ O projeto implementa e compara empiricamente duas arquiteturas de back-end — *
 
 ## Arquitetura e organização
 
-O projeto é composto por dois componentes independentes:
+O projeto implementa e compara duas alternativas arquiteturais completas de back-end:
 
 ```
 vestibular_app/
 ├── android/          # Front-end: aplicativo Android (Kotlin)
-├── backend/          # Back-end MVC: API REST em Node.js + MySQL
-├── database/         # Scripts SQL: schema e migrações
+├── backend/          # Back-end MVC: API REST em Node.js + Express + MySQL
+├── database/         # Scripts SQL: schema e migrações (MySQL)
+├── firebase/         # Back-end BaaS: Cloud Functions HTTP + Cloud Firestore
 └── docs/             # Documentação técnica complementar
 ```
 
@@ -97,6 +98,15 @@ Endpoints expostos sob `/api/`:
 | `/api/answers` | Registro, histórico e estatísticas de respostas |
 | `/api/simulations` | Criação, execução e resultado de simulados |
 | `/health` | Verificação de disponibilidade da API |
+
+### Back-end BaaS (Firebase)
+
+Implementação serverless em `firebase/` equivalente funcionalmente ao MVC:
+- **Cloud Functions HTTP (`functions/`):** aplicação Express encapsulada em função serverless, expondo os mesmos endpoints `/api/*`.
+- **Cloud Firestore:** banco NoSQL orientado a documentos com desnormalização de entidades (elimina JOINs) e índices compostos em `firestore.indexes.json`.
+- **Segurança:** regras declarativas em `firestore.rules` e autenticação via token Bearer JWT idêntica à do MVC.
+
+Consulte [`firebase/README.md`](firebase/README.md) para detalhes de instalação e emulação local.
 
 ### Front-end (Android)
 
@@ -210,6 +220,28 @@ curl http://localhost:3000/health
 4. Execute em um emulador ou dispositivo físico.
 
 > **Atenção:** O `android:usesCleartextTraffic="true"` no `AndroidManifest.xml` permite tráfego HTTP sem TLS, necessário para conexão com o servidor local durante o desenvolvimento.
+
+### 6. (Opcional) Executar o back-end Firebase localmente
+
+Para executar e testar a versão BaaS com o **Firebase Local Emulator Suite**:
+
+```bash
+cd firebase/functions
+npm install
+cd ..
+firebase emulators:start
+```
+
+Para popular o Firestore local com a massa de dados determinística para benchmarks:
+
+```bash
+# PowerShell:
+$env:FIRESTORE_EMULATOR_HOST="127.0.0.1:8080"
+$env:GCLOUD_PROJECT="vestibular-tcc-project"
+node firebase/scripts/seedFirestore.js
+```
+
+Consulte o guia dedicado em [`firebase/README.md`](firebase/README.md).
 
 ---
 

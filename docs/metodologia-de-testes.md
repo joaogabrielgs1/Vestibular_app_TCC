@@ -150,20 +150,30 @@ Substitua `<SEU-PROJETO>` pelo ID do projeto Firebase configurado no emulador.
 
 ## 4. Seed de dados para benchmark
 
-### Script
-`backend/scripts/seedBenchmark.js`
+### Scripts
+- MySQL (MVC): `backend/scripts/seedBenchmark.js`
+- Cloud Firestore (BaaS): `firebase/scripts/seedFirestore.js`
 
 ### Objetivo
 Garantir paridade e reprodutibilidade entre os experimentos nos dois ambientes (ISO/IEC 25010 — reprodutibilidade metodológica): o banco relacional MySQL e o Firestore recebem a mesma massa de dados controlada antes de qualquer teste de desempenho.
 
-### Execução
+### Execução no MySQL
 
 ```bash
 cd backend
 npm run seed:benchmark
 ```
 
-O script popula deterministicamente: matérias, vestibulares, questões, usuários de teste e respostas históricas.
+### Execução no Cloud Firestore (Emulador ou Nuvem)
+
+```bash
+# Com o Firebase Emulator ativo (PowerShell):
+$env:FIRESTORE_EMULATOR_HOST="127.0.0.1:8080"
+$env:GCLOUD_PROJECT="vestibular-tcc-project"
+node firebase/scripts/seedFirestore.js
+```
+
+Ambos os scripts povoam deterministicamente: 8 matérias, 4 bancas examinadoras, 120 questões com 5 alternativas, 10 usuários de teste e 200 respostas históricas.
 
 ---
 
